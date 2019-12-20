@@ -28,3 +28,11 @@ The Load Feature is used to load the data into the system
 # Clear Feature
 
 Erases the data from the system.
+
+# Use of 3-Tier Architecture
+
+This Project has been developed with a heavy focus on the 3-Tier Architecture. The Presentation Layer is the User Interface presented to the user.
+
+The Business Layer contains the data logic that is then used in the Presentation Layer and Data Layer.
+
+The Data Layer is used to handle the data in the files.
