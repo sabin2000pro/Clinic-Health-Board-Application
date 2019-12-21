@@ -133,8 +133,9 @@ namespace BusinessLayer
         {
             while(clientIDExists)
             {
-                if (clientList.Find(searchClientID => searchClientID.clientID == patient) == null)
+                if (clientList.Find(searchClientID => searchClientID.clientID == patient) == null) // If a unique client ID in the list does not exist, i.e is null
                 {
+                    clientIDExists = false; // Set flag to false
                     throw new Exception("A unique client ID does not exist.");
                 }
 
