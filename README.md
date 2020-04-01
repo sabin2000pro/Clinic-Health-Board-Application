@@ -1,6 +1,10 @@
 # Clinic-Health-Board-Application
 A Health Board System that allows users to add staff. clients and visits to the system and to also record the different types of visits that a client may require, for example scheduling visits for bathing, administering drugs etc.
 
+This application was developed using the 3-Tier Architecture with a heavy focus on Object-Orientation and the use of Design Patterns. 
+
+I opted for the Decorator design pattern.
+
 # Add Staff User Interface
 
 ![AddStaff](https://user-images.githubusercontent.com/29733613/71289725-b98e4800-2365-11ea-9fdd-d630dc30bfaf.PNG)
