@@ -42,9 +42,8 @@ namespace BusinessLayer
         
         public Boolean addStaff(int id, string firstName, string surname, string address1, string address2, string category, double baseLocLat, double baseLocLon) // Routine to Add members of Staff to the system
         {
-            Staff staffObject = null;
-            staffObject = new Staff(id, firstName, surname, address1, address2, category, baseLocLat, baseLocLon);
-
+            Staff staffObject = new Staff(id, firstName, surname, address1, address2, category, baseLocLat, baseLocLon);
+            
             try
             {
                 if (staffObject != null) // If the staff object is not empty
@@ -62,9 +61,8 @@ namespace BusinessLayer
         }
         public Boolean addClient(int id, string firstName, string surname, string address1, string address2, double locLat, double locLon) // Adds a client to the system
         {
-            Client clientObject = null;
-            clientObject = new Client(id, firstName, surname, address1, address2, locLat, locLon); // Create a new instance of client object
-
+            Client clientObject = new Client(id, firstName, surname, address1, address2, locLat, locLon);
+           
             try
             {
                 if (clientObject != null)
@@ -83,12 +81,11 @@ namespace BusinessLayer
 
         public Boolean addVisit(int[] staff, int patient, int type, string dateTime) // Routine that adds visits for clients
         {
-          
-            Visits visits = null; // Visits by default is null (empty)
-            visits = new Visits(staff, patient, type, dateTime);
-
+         
+            Visits visits = new Visits(staff, patient, type, dateTime); // Create visits instance
+            
             checkAssessmentTypes(type); // Method will be called to check assessment type
-            verifyClientID(patient);
+            verifyClientID(patient); // Call method to verify if the client ID is valid
 
             verifyStaffID(patient);
             verifyStaffData(type);
