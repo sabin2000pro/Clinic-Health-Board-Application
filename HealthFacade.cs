@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-
 using System.Text;
 using System.IO;
 
@@ -13,6 +12,7 @@ namespace BusinessLayer
     // Date of Completion: 16/11/2019 @ 13:00
     // Purpose of Class: The purpose of this class is to communicate with the Presentation Layer in order to display the correct results on the Health Board Form
     // Any Errors? : N/A
+    
     public static class visitTypes
     {
         // Types of assessments to be checked
@@ -22,6 +22,7 @@ namespace BusinessLayer
         public const int bath = 2;
         public const int meal = 3;
     }
+    
     public class HealthFacade
     {
         private List<Staff> staffList = new List<Staff>(); // A list of staff
@@ -54,11 +55,13 @@ namespace BusinessLayer
                 return true; // Returns true after it has been added
 
             }
-            catch // Catch the exception
-            {
+            
+            catch {   // Catch the exception
+            
                 return false; // Return false otherwise
             }
         }
+        
         public Boolean addClient(int id, string firstName, string surname, string address1, string address2, double locLat, double locLon) // Adds a client to the system
         {
             Client clientObject = new Client(id, firstName, surname, address1, address2, locLat, locLon);
@@ -73,8 +76,8 @@ namespace BusinessLayer
                 return true;
             }
 
-            catch
-            {
+            catch {
+            
                 return false; // Otherwise return false
             }
         }
@@ -102,26 +105,25 @@ namespace BusinessLayer
                 return true;
             }
            
-            catch
-            {
-                return false;
+            catch {
+            
+                return false; // Otherwise return false
             }
         }
 
         public void checkAssessmentTypes(int type) // Routine that checks for the assessment type
         {
           
-            if (type < 0 || type > 3) // If the assessment type is bigger than 3 or less than 0
-              {
-
-                assessmentTypeValid = false;
-                throw new Exception("\n Assessment type must be between 0-3 \n ");
+            if (type < 0 || type > 3) {
+              
+               assessmentTypeValid = false;
+               throw new Exception("\n Assessment type must be between 0-3 \n ");
 
                 }
 
-            else
-            {
-                assessmentTypeValid = true;
+            else {
+           
+             assessmentTypeValid = true;
 
                 }
             }
@@ -136,8 +138,8 @@ namespace BusinessLayer
                     throw new Exception("A unique client ID does not exist.");
                 }
 
-                else
-                {
+                else {
+                
                     clientIDExists = true;
                 }
             }
@@ -153,8 +155,8 @@ namespace BusinessLayer
                     throw new Exception("A unique Staff ID does not exist"); // Throw exception
                 }
 
-                else
-                {
+                else {
+                
                     staffIDExists = true; // Otherwise staff ID exists if the first condition fails
                 }
             }
@@ -168,8 +170,8 @@ namespace BusinessLayer
             int isClientAvailable = 0;
             int isStaffAvailable = 0;
 
-            switch(type)
-            {
+            switch(type) {
+            
                 case 0:
 
                     if(staffList.Find(searchQuery => searchQuery.category == workerTypes[0]) == null || staffList.Find(searchQuery => searchQuery.category == workerTypes[3]) == null)
@@ -236,9 +238,9 @@ namespace BusinessLayer
                         endTime.AddMinutes(30);
                     }
 
-                    if(type == 3)
+                    if(type == 3) // If the assessment type is type 3.
                     {
-                        endTime.AddMinutes(30);
+                        endTime.AddMinutes(30); // Add 30 minutes to the appointment
                     }
 
                     if(Convert.ToDateTime(dateTime) <= startTime && Convert.ToDateTime(dateTime) >= endTime) // If the date time is between the start time and end time
@@ -252,14 +254,12 @@ namespace BusinessLayer
         public String getStaffList() // Routine that prints the staff list
         {
             String result = string.Join(Environment.NewLine, staffList); // Set the output result by joining the strings and adding them on a new line
-
             return result;
         }
 
         public String getClientList() // Routine that gets the client list
         {
-            String result = string.Join(Environment.NewLine, clientList);
-
+            String result = string.Join(Environment.NewLine, clientList); // Display the client list on a new line
             return result;
         }
 
@@ -305,16 +305,15 @@ namespace BusinessLayer
                 while((line = visitsReader.ReadLine()) != null) // Loop over the visits file
                 {
                     
-                    string[] tokenizedData = line.Split(',');
-                
+                    string[] tokenizedData = line.Split(','); // Split the data in the file by a comma delimiter.
                     int[] visitStaffIds = Array.ConvertAll(tokenizedData[0].Split(' '), tempVar => int.Parse(tempVar)); // This line of code takes tokenizedData[0] at index 0 which is "1 3" in the text file for visits, and converts it into an int[] of {1, 3}
                   
                     addVisit(visitStaffIds, Convert.ToInt32(tokenizedData[1]), Convert.ToInt32(tokenizedData[2]), Convert.ToString(tokenizedData[3])); // Call method to add the data and display it
                 }
 
             }
-            catch (Exception exc)
-            {
+            catch (Exception exc) {
+            
                 return true;
             }
 
@@ -330,8 +329,8 @@ namespace BusinessLayer
 
         public void writeStaffData(string[] writeFilePaths) // Routine that saves data for Staff to a file
         {
-            if (!File.Exists(writeFilePaths[0]))
-            {
+            if (!File.Exists(writeFilePaths[0])) {
+            
                 TextWriter writer = new StreamWriter(writeFilePaths[0]);
 
                 foreach (Staff memberOfStaff in staffList)
@@ -358,6 +357,7 @@ namespace BusinessLayer
                 }
             }
         }
+        
         public void writeClientData(string[] writeFilePaths) // Routine that writes client data to a file
         {
             if (!File.Exists(writeFilePaths[1])) // If the file path at index 1 does not exist
@@ -390,18 +390,19 @@ namespace BusinessLayer
         }
         public void writeVisitsData(string[] writeFilePaths) // Routine to write visits data to file
         {
-            if (!File.Exists(writeFilePaths[2])) // If the file path at index 2 does not exist
-            {
+            if (!File.Exists(writeFilePaths[2])) { // If the file path at index 2 does not exist
+            
                 TextWriter writer = new StreamWriter(writeFilePaths[2]);
 
-               foreach (Visits clientVisits in listOfVisits)
+               foreach (Visits clientVisits in listOfVisits) { // For each of the client visits in the list of visits
 
-               writer.WriteLine(clientVisits.ToString());
-               writer.Close();
+               writer.WriteLine(clientVisits.ToString()); // Write the clients to the output.
+               writer.Close(); // Close the file writer
+               }
             }
 
-            else if (File.Exists(writeFilePaths[2]))
-            {
+            else if (File.Exists(writeFilePaths[2])) {
+            
                 File.WriteAllText(writeFilePaths[2], String.Empty); // Empty out the file
 
                 using (var theTextWriter = new StreamWriter(writeFilePaths[2], true))
