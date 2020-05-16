@@ -218,7 +218,7 @@ namespace BusinessLayer
         {
             string exceptionMessage = "Time Clash";
 
-                foreach (Visits visitID in listOfVisits)
+                foreach (Visits visitID in listOfVisits) // For each of the visits
                 {
                     DateTime startTime = visitID.dateTime; // Set the start time to the visit date time
                     DateTime endTime = startTime;
@@ -310,8 +310,8 @@ namespace BusinessLayer
                   
                     addVisit(visitStaffIds, Convert.ToInt32(tokenizedData[1]), Convert.ToInt32(tokenizedData[2]), Convert.ToString(tokenizedData[3])); // Call method to add the data and display it
                 }
-
             }
+            
             catch (Exception exc) {
             
                 return true;
@@ -388,6 +388,7 @@ namespace BusinessLayer
                 }
             }
         }
+        
         public void writeVisitsData(string[] writeFilePaths) // Routine to write visits data to file
         {
             if (!File.Exists(writeFilePaths[2])) { // If the file path at index 2 does not exist
@@ -399,6 +400,7 @@ namespace BusinessLayer
                writer.WriteLine(clientVisits.ToString()); // Write the clients to the output.
                writer.Close(); // Close the file writer
                }
+                
             }
 
             else if (File.Exists(writeFilePaths[2])) {
