@@ -32,7 +32,7 @@ namespace BusinessLayer
         private bool clientIDExists = false; // Boolean variable to determine whether the client ID exists or not
         private bool staffIDExists = false;
 
-        private bool assessmentTypeValid = false;
+        private bool assessmentTypeValid = false; // Determines if the assessment type is valid or not.
         private int staffDataVerified = 0; // Flag to determine if data is checked
 
         private string[] writeFilePaths = { @"C:/Users/sabin/Desktop/cw2/staffData.txt"
@@ -43,7 +43,7 @@ namespace BusinessLayer
         
         public Boolean addStaff(int id, string firstName, string surname, string address1, string address2, string category, double baseLocLat, double baseLocLon) // Routine to Add members of Staff to the system
         {
-            Staff staffObject = new Staff(id, firstName, surname, address1, address2, category, baseLocLat, baseLocLon);
+            Staff staffObject = new Staff(id, firstName, surname, address1, address2, category, baseLocLat, baseLocLon); // Create a new staff instance.
             
             try
             {
@@ -64,11 +64,11 @@ namespace BusinessLayer
         
         public Boolean addClient(int id, string firstName, string surname, string address1, string address2, double locLat, double locLon) // Adds a client to the system
         {
-            Client clientObject = new Client(id, firstName, surname, address1, address2, locLat, locLon);
+            Client clientObject = new Client(id, firstName, surname, address1, address2, locLat, locLon); // Create a new Client instance.
            
             try
             {
-                if (clientObject != null)
+                if (clientObject != null) // If there is a client instance of the class.
                 {
                     clientList.Add(clientObject); // Add the object data to the list
                 }
@@ -76,7 +76,7 @@ namespace BusinessLayer
                 return true;
             }
 
-            catch {
+            catch { // Catch the exception.
             
                 return false; // Otherwise return false
             }
