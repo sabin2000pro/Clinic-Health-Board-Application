@@ -333,9 +333,11 @@ namespace BusinessLayer
             
                 TextWriter writer = new StreamWriter(writeFilePaths[0]);
 
-                foreach (Staff memberOfStaff in staffList)
+                foreach (Staff memberOfStaff in staffList) {
 
                 writer.WriteLine(memberOfStaff.ToString());
+                    
+               }
 
                 fileOpenedFlag = 1; // File flag is now true
                 writer.Close();
@@ -364,9 +366,11 @@ namespace BusinessLayer
             {
                 TextWriter writer = new StreamWriter(writeFilePaths[1]); // Create a textwriter instance of type stream writer by passing in the path
 
-               foreach (Client client in clientList)
+               foreach (Client client in clientList) {
 
                writer.WriteLine(client.ToString());
+                   
+              }
                fileOpenedFlag = 1; // Flag is opened
 
                writer.Close();
