@@ -114,16 +114,16 @@ namespace BusinessLayer
         public void checkAssessmentTypes(int type) // Routine that checks for the assessment type
         {
           
-            if (type < 0 || type > 3) {
+            if (type < 0 || type > 3) { // If the type is not between 0-3
               
-               assessmentTypeValid = false;
-               throw new Exception("\n Assessment type must be between 0-3 \n ");
+               assessmentTypeValid = false; // The assessment type is false.
+               throw new Exception("\n Assessment type must be between 0-3 \n "); // Throw exception
 
                 }
 
             else {
            
-             assessmentTypeValid = true;
+             assessmentTypeValid = true; // Otherwise it's true.
 
                 }
             }
@@ -134,7 +134,8 @@ namespace BusinessLayer
             {
                 if (clientList.Find(searchClientID => searchClientID.clientID == patient) == null) // If a unique client ID in the list does not exist, i.e is null
                 {
-                    clientIDExists = false; // Set flag to false
+                    clientIDExists = false; // Set flag to false.
+                    
                     throw new Exception("A unique client ID does not exist.");
                 }
 
@@ -186,11 +187,11 @@ namespace BusinessLayer
                         throw new Exception("\n Non-existent Client \n ");
                         isClientAvailable = 0;
                  
-                    if (staffList.Find(searchQuery => searchQuery.category == workerTypes[3]) == null)
+                    if (staffList.Find(searchQuery => searchQuery.category == workerTypes[3]) == null) // If there are no community nurses in the array
 
-                    throw new Exception("\n There is no Community Nurse. \n ");
+                    throw new Exception("\n There is no Community Nurse. \n "); // Throw exception.
                     isStaffAvailable = 0;
-                    break;
+                    break; // Break out of the case statement
 
                 case 2:
                     
@@ -202,6 +203,7 @@ namespace BusinessLayer
 
                     if (staffList.Count != staffRequirements[0])
                         throw new Exception("\n Invalid Member Of Staff Present");
+                    
                     isStaffAvailable = 0;
 
                     if (staffList.Find(searchQuery => searchQuery.category == workerTypes[2]) == null)
@@ -329,18 +331,18 @@ namespace BusinessLayer
 
         public void writeStaffData(string[] writeFilePaths) // Routine that saves data for Staff to a file
         {
-            if (!File.Exists(writeFilePaths[0])) {
+            if (!File.Exists(writeFilePaths[0])) { // If the file path at index 0 does not exist
             
-                TextWriter writer = new StreamWriter(writeFilePaths[0]);
+                TextWriter writer = new StreamWriter(writeFilePaths[0]); // Create a new Text Writer instance.
 
-                foreach (Staff memberOfStaff in staffList) {
+                foreach (Staff memberOfStaff in staffList) { // For every member of staff in the staff list
 
-                writer.WriteLine(memberOfStaff.ToString());
+                writer.WriteLine(memberOfStaff.ToString()); // Write it to the file by calling toString()
                     
                }
 
                 fileOpenedFlag = 1; // File flag is now true
-                writer.Close();
+                writer.Close(); // Close the file writer.
 
                 fileOpenedFlag = 0; // File is closed 
                 writeClientData(writeFilePaths);
