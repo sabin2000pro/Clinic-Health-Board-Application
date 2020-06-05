@@ -29,8 +29,8 @@ namespace BusinessLayer
         private List<Client> clientList = new List<Client>(); // A list of client objects 
         private List<Visits> listOfVisits = new List<Visits>(); // A lsit of visits objects
 
-        private bool clientIDExists = false; // Boolean variable to determine whether the client ID exists or not
-        private bool staffIDExists = false;
+        private bool clientIDExists = false; // Boolean variable to determine whether the Client ID exists or not.
+        private bool staffIDExists = false; // Boolean variable to determine whether the Staff ID exists or not.
 
         private bool assessmentTypeValid = false; // Determines if the assessment type is valid or not.
         private int staffDataVerified = 0; // Flag to determine if data is checked
@@ -90,7 +90,7 @@ namespace BusinessLayer
             checkAssessmentTypes(type); // Method will be called to check assessment type
             verifyClientID(patient); // Call method to verify if the client ID is valid
 
-            verifyStaffID(patient);
+            verifyStaffID(patient); // Invoke routine to verify if the staff ID exists or not
             verifyStaffData(type);
 
             checkTimeClash(staff, patient, type, dateTime);
@@ -102,7 +102,7 @@ namespace BusinessLayer
                     listOfVisits.Add(visits); // Add it to the list
                 }
 
-                return true;
+                return true; // Return true
             }
            
             catch {
@@ -405,8 +405,8 @@ namespace BusinessLayer
 
                writer.WriteLine(clientVisits.ToString()); // Write the clients to the output.
                writer.Close(); // Close the file writer
+                   
                }
-                
             }
 
             else if (File.Exists(writeFilePaths[2])) {
